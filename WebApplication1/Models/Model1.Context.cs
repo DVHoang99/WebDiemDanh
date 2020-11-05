@@ -37,5 +37,6 @@ namespace WebApplication1.Models
         public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
         public virtual DbSet<TKB> TKBs { get; set; }
         public virtual DbSet<TAIKHOAN> TAIKHOANs { get; set; }
+        public virtual DbSet<CHITIETMONHOC> CHITIETMONHOCs { get; set; }
     }
 }

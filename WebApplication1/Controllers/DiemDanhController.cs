@@ -24,8 +24,8 @@ namespace WebApplication1.Controllers
         {
             DIEMDANH d = new DIEMDANH();
 
-            d.MASINHVIEN = s.ID;
-            d.TENSINHVIEN = s.Name;
+            d.MASINHVIEN = s.Id;
+            d.TENSINHVIEN = s.TEN;
             d.MAGIANGVIEN = t.ID;
 
 

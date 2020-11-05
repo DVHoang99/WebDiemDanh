@@ -7,8 +7,8 @@ namespace WebApplication1.Models
 {
     public class Student
     {
-       public string ID { get; set; }
-       public string Name { get; set; }
-       public string Class { get; set; }
+       public string Id { get; set; }
+       public string TEN { get; set; }
+       public string TENLOP { get; set; }
     }
 }

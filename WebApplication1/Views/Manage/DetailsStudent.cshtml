@@ -1,0 +1,35 @@
+﻿@model WebApplication1.Models.SINHVIEN
+
+@{
+    ViewBag.Title = "DeDetailsStudent";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>DeDetailsStudent</h2>
+
+<div>
+    <h4>SINHVIEN</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.TEN)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TEN)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LOP.TENLOP)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LOP.TENLOP)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("EditStudent", "EditStudent", new { id = Model.ID }) |
+    @Html.ActionLink("Back to List", "ManageStudent")
+</p>

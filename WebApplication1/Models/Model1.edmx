@@ -5,6 +5,14 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
     <Schema Namespace="WEBATTENDANCEModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="CHITIETMONHOC">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IDTKB" Type="int" />
+          <Property Name="MASV" Type="varchar" MaxLength="20" />
+        </EntityType>
         <EntityType Name="DIEMDANH">
           <Key>
             <PropertyRef Name="ID" />
@@ -95,6 +103,11 @@
           <Property Name="Name" Type="varchar" MaxLength="30" />
           <Property Name="ROLE1" Type="int" />
         </EntityType>
+        <!--Errors Found During Generation:
+warning 6013: The table/view 'WEBATTENDANCE.dbo.test' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+        <EntityType Name="test">
+          <Property Name="id" Type="int" />
+        </EntityType>-->
         <EntityType Name="TKB">
           <Key>
             <PropertyRef Name="ID" />
@@ -108,6 +121,30 @@
           <Property Name="NGAYBATDAU" Type="date" />
           <Property Name="NGAYKETHUC" Type="date" />
         </EntityType>
+        <Association Name="FK__CHITIETMON__MASV__7E02B4CC">
+          <End Role="TKB" Type="Self.TKB" Multiplicity="0..1" />
+          <End Role="CHITIETMONHOC" Type="Self.CHITIETMONHOC" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TKB">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="CHITIETMONHOC">
+              <PropertyRef Name="IDTKB" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__CHITIETMON__MASV__7EF6D905">
+          <End Role="SINHVIEN" Type="Self.SINHVIEN" Multiplicity="0..1" />
+          <End Role="CHITIETMONHOC" Type="Self.CHITIETMONHOC" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SINHVIEN">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="CHITIETMONHOC">
+              <PropertyRef Name="MASV" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK__DIEMDANH__MAGIAN__4B7734FF">
           <End Role="GIANGVIEN" Type="Self.GIANGVIEN" Multiplicity="0..1" />
           <End Role="DIEMDANH" Type="Self.DIEMDANH" Multiplicity="*" />
@@ -241,6 +278,7 @@
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="WEBATTENDANCEModelStoreContainer">
+          <EntitySet Name="CHITIETMONHOC" EntityType="Self.CHITIETMONHOC" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="DIEMDANH" EntityType="Self.DIEMDANH" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="DONVI" EntityType="Self.DONVI" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="GIANGVIEN" EntityType="Self.GIANGVIEN" Schema="dbo" store:Type="Tables" />
@@ -253,6 +291,14 @@
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TAIKHOAN" EntityType="Self.TAIKHOAN" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TKB" EntityType="Self.TKB" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__CHITIETMON__MASV__7E02B4CC" Association="Self.FK__CHITIETMON__MASV__7E02B4CC">
+            <End Role="TKB" EntitySet="TKB" />
+            <End Role="CHITIETMONHOC" EntitySet="CHITIETMONHOC" />
+          </AssociationSet>
+          <AssociationSet Name="FK__CHITIETMON__MASV__7EF6D905" Association="Self.FK__CHITIETMON__MASV__7EF6D905">
+            <End Role="SINHVIEN" EntitySet="SINHVIEN" />
+            <End Role="CHITIETMONHOC" EntitySet="CHITIETMONHOC" />
+          </AssociationSet>
           <AssociationSet Name="FK__DIEMDANH__MAGIAN__4B7734FF" Association="Self.FK__DIEMDANH__MAGIAN__4B7734FF">
             <End Role="GIANGVIEN" EntitySet="GIANGVIEN" />
             <End Role="DIEMDANH" EntitySet="DIEMDANH" />
@@ -388,6 +434,7 @@
           <Property Name="TENLOP" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="DIEMDANHs" Relationship="Self.FK__DIEMDANH__MASINH__4A8310C6" FromRole="SINHVIEN" ToRole="DIEMDANH" />
           <NavigationProperty Name="LOP" Relationship="Self.FK__SINHVIEN__TENLOP__30C33EC3" FromRole="SINHVIEN" ToRole="LOP" />
+          <NavigationProperty Name="CHITIETMONHOCs" Relationship="WEBATTENDANCEModel.FK__CHITIETMON__MASV__7EF6D905" FromRole="SINHVIEN" ToRole="CHITIETMONHOC" />
         </EntityType>
         <EntityType Name="sysdiagram">
           <Key>
@@ -416,6 +463,7 @@
           <NavigationProperty Name="MONHOC" Relationship="Self.FK__TKB__MAMH__43D61337" FromRole="TKB" ToRole="MONHOC" />
           <NavigationProperty Name="NHOM1" Relationship="Self.FK__TKB__NHOM__42E1EEFE" FromRole="TKB" ToRole="NHOM" />
           <NavigationProperty Name="PHONG1" Relationship="Self.FK__TKB__PHONG__46B27FE2" FromRole="TKB" ToRole="PHONG" />
+          <NavigationProperty Name="CHITIETMONHOCs" Relationship="WEBATTENDANCEModel.FK__CHITIETMON__MASV__7E02B4CC" FromRole="TKB" ToRole="CHITIETMONHOC" />
         </EntityType>
         <Association Name="FK__DIEMDANH__MAGIAN__4B7734FF">
           <End Role="GIANGVIEN" Type="Self.GIANGVIEN" Multiplicity="0..1" />
@@ -594,6 +642,15 @@
             <End Role="ROLE" EntitySet="ROLEs" />
             <End Role="TAIKHOAN" EntitySet="TAIKHOANs" />
           </AssociationSet>
+          <EntitySet Name="CHITIETMONHOCs" EntityType="WEBATTENDANCEModel.CHITIETMONHOC" />
+          <AssociationSet Name="FK__CHITIETMON__MASV__7E02B4CC" Association="WEBATTENDANCEModel.FK__CHITIETMON__MASV__7E02B4CC">
+            <End Role="TKB" EntitySet="TKBs" />
+            <End Role="CHITIETMONHOC" EntitySet="CHITIETMONHOCs" />
+          </AssociationSet>
+          <AssociationSet Name="FK__CHITIETMON__MASV__7EF6D905" Association="WEBATTENDANCEModel.FK__CHITIETMON__MASV__7EF6D905">
+            <End Role="SINHVIEN" EntitySet="SINHVIENs" />
+            <End Role="CHITIETMONHOC" EntitySet="CHITIETMONHOCs" />
+          </AssociationSet>
           </EntityContainer>
         <EntityType Name="TAIKHOAN">
           <Key>
@@ -614,6 +671,40 @@
             </Principal>
             <Dependent Role="TAIKHOAN">
               <PropertyRef Name="ROLE1" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="CHITIETMONHOC">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IDTKB" Type="Int32" />
+          <Property Name="MASV" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="TKB" Relationship="WEBATTENDANCEModel.FK__CHITIETMON__MASV__7E02B4CC" FromRole="CHITIETMONHOC" ToRole="TKB" />
+          <NavigationProperty Name="SINHVIEN" Relationship="WEBATTENDANCEModel.FK__CHITIETMON__MASV__7EF6D905" FromRole="CHITIETMONHOC" ToRole="SINHVIEN" />
+        </EntityType>
+        <Association Name="FK__CHITIETMON__MASV__7E02B4CC">
+          <End Type="WEBATTENDANCEModel.TKB" Role="TKB" Multiplicity="0..1" />
+          <End Type="WEBATTENDANCEModel.CHITIETMONHOC" Role="CHITIETMONHOC" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TKB">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="CHITIETMONHOC">
+              <PropertyRef Name="IDTKB" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__CHITIETMON__MASV__7EF6D905">
+          <End Type="WEBATTENDANCEModel.SINHVIEN" Role="SINHVIEN" Multiplicity="0..1" />
+          <End Type="WEBATTENDANCEModel.CHITIETMONHOC" Role="CHITIETMONHOC" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SINHVIEN">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="CHITIETMONHOC">
+              <PropertyRef Name="MASV" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -735,6 +826,15 @@
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="PASSWORD" ColumnName="PASSWORD" />
                 <ScalarProperty Name="USERNAME" ColumnName="USERNAME" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CHITIETMONHOCs">
+            <EntityTypeMapping TypeName="WEBATTENDANCEModel.CHITIETMONHOC">
+              <MappingFragment StoreEntitySet="CHITIETMONHOC">
+                <ScalarProperty Name="MASV" ColumnName="MASV" />
+                <ScalarProperty Name="IDTKB" ColumnName="IDTKB" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

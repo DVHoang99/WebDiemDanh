@@ -18,6 +18,7 @@ namespace WebApplication1.Models
         public SINHVIEN()
         {
             this.DIEMDANHs = new HashSet<DIEMDANH>();
+            this.CHITIETMONHOCs = new HashSet<CHITIETMONHOC>();
         }
     
         public string ID { get; set; }
@@ -27,5 +28,7 @@ namespace WebApplication1.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<DIEMDANH> DIEMDANHs { get; set; }
         public virtual LOP LOP { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<CHITIETMONHOC> CHITIETMONHOCs { get; set; }
     }
 }

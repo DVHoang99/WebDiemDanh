@@ -150,6 +150,9 @@
     </Compile>
     <Compile Include="Models\Account.cs" />
     <Compile Include="Models\CheckIn.cs" />
+    <Compile Include="Models\CHITIETMONHOC.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\DIEMDANH.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -271,6 +274,10 @@
     <Content Include="Views\Manage\ManageStudent.cshtml" />
     <Content Include="Views\Manage\AddListTeacher.cshtml" />
     <Content Include="Views\Manage\ManageTeacher.cshtml" />
+    <Content Include="Views\Manage\EditStudent.cshtml" />
+    <Content Include="Views\Manage\DetailsStudent.cshtml" />
+    <Content Include="Views\Manage\EditTeacher.cshtml" />
+    <Content Include="Views\Manage\AddSchedule.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

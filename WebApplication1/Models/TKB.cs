@@ -14,6 +14,12 @@ namespace WebApplication1.Models
     
     public partial class TKB
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public TKB()
+        {
+            this.CHITIETMONHOCs = new HashSet<CHITIETMONHOC>();
+        }
+    
         public int ID { get; set; }
         public Nullable<int> NHOM { get; set; }
         public string MAMH { get; set; }
@@ -28,5 +34,7 @@ namespace WebApplication1.Models
         public virtual MONHOC MONHOC { get; set; }
         public virtual NHOM NHOM1 { get; set; }
         public virtual PHONG PHONG1 { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<CHITIETMONHOC> CHITIETMONHOCs { get; set; }
     }
 }

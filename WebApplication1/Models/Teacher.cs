@@ -8,10 +8,11 @@ namespace WebApplication1.Models
     public class Teacher
     {
         public string ID { get; set; }
-        public string Name { get; set; }
-        public string Certificate { get; set; }
-        public string Office { get; set; }
-        public string UnitOfWork { get; set; }
+        public string TEN { get; set; }
+        public string BANGCAP  { get; set; }
+        public string CHUCVU { get; set; }
+        public int MADONVI { get; set; }
+        public string DONVI { get; set; }
 
     }
 }

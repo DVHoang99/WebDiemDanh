@@ -28,6 +28,9 @@
         <AssociationConnector Association="WEBATTENDANCEModel.FK__TKB__PHONG__46B27FE2" ManuallyRouted="false" />
         <EntityTypeShape EntityType="WEBATTENDANCEModel.TAIKHOAN" Width="1.5" PointX="8.25" PointY="4.375" />
         <AssociationConnector Association="WEBATTENDANCEModel.FK__TAIKHOAN__ROLE1__7755B73D" />
+        <EntityTypeShape EntityType="WEBATTENDANCEModel.CHITIETMONHOC" Width="1.5" PointX="8.25" PointY="7.125" />
+        <AssociationConnector Association="WEBATTENDANCEModel.FK__CHITIETMON__MASV__7E02B4CC" />
+        <AssociationConnector Association="WEBATTENDANCEModel.FK__CHITIETMON__MASV__7EF6D905" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

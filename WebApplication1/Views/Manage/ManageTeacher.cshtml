@@ -19,7 +19,7 @@
             Chức vụ
         </th>
         <th>
-            Bằng c
+            Bằng cấp
         </th>
         <th>
             Đơn vị trực thuộc
@@ -42,8 +42,8 @@
             @Html.DisplayFor(modelItem => item.DONVI.TENDONVI)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.ID }) |
+            @Html.ActionLink("Edit", "EditTeacher", new { id=item.ID }) |
+            @Html.ActionLink("Details", "DetailsTeacher", new { id=item.ID }) |
             @Html.ActionLink("Delete", "Delete", new { id=item.ID })
         </td>
     </tr>
