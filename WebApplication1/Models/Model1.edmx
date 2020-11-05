@@ -1,0 +1,764 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="WEBATTENDANCEModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="DIEMDANH">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MASINHVIEN" Type="varchar" MaxLength="20" />
+          <Property Name="TENSINHVIEN" Type="varchar(max)" />
+          <Property Name="MAGIANGVIEN" Type="varchar" MaxLength="30" />
+          <Property Name="MAMON" Type="varchar" MaxLength="20" />
+          <Property Name="NGAYDIENDANH" Type="date" />
+        </EntityType>
+        <EntityType Name="DONVI">
+          <Key>
+            <PropertyRef Name="MADONVI" />
+          </Key>
+          <Property Name="MADONVI" Type="int" Nullable="false" />
+          <Property Name="TENDONVI" Type="varchar(max)" />
+        </EntityType>
+        <EntityType Name="GIANGVIEN">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="TEN" Type="varchar(max)" />
+          <Property Name="CHUCVU" Type="varchar(max)" />
+          <Property Name="BANGCAP" Type="varchar(max)" />
+          <Property Name="MADONVI" Type="int" />
+        </EntityType>
+        <EntityType Name="LOP">
+          <Key>
+            <PropertyRef Name="TENLOP" />
+          </Key>
+          <Property Name="TENLOP" Type="varchar" MaxLength="10" Nullable="false" />
+        </EntityType>
+        <EntityType Name="MONHOC">
+          <Key>
+            <PropertyRef Name="IDMONHOC" />
+          </Key>
+          <Property Name="IDMONHOC" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="TENMONHOC" Type="varchar(max)" />
+          <Property Name="SOTC" Type="int" />
+        </EntityType>
+        <EntityType Name="NHOM">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="HOCKI" Type="int" />
+          <Property Name="NAMHOC" Type="varchar" MaxLength="30" />
+        </EntityType>
+        <EntityType Name="PHONG">
+          <Key>
+            <PropertyRef Name="MAPHONG" />
+          </Key>
+          <Property Name="MAPHONG" Type="varchar" MaxLength="20" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ROLE">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="ROLE1" Type="varchar" MaxLength="30" />
+        </EntityType>
+        <EntityType Name="SINHVIEN">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="TEN" Type="varchar(max)" />
+          <Property Name="TENLOP" Type="varchar" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="TAIKHOAN">
+          <Key>
+            <PropertyRef Name="USERNAME" />
+          </Key>
+          <Property Name="USERNAME" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="PASSWORD" Type="varchar" MaxLength="30" />
+          <Property Name="Name" Type="varchar" MaxLength="30" />
+          <Property Name="ROLE1" Type="int" />
+        </EntityType>
+        <EntityType Name="TKB">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NHOM" Type="int" />
+          <Property Name="MAMH" Type="varchar" MaxLength="20" />
+          <Property Name="MAGIANGVIEN" Type="varchar" MaxLength="30" />
+          <Property Name="PHONG" Type="varchar" MaxLength="20" />
+          <Property Name="TENLOP" Type="varchar" MaxLength="10" />
+          <Property Name="NGAYBATDAU" Type="date" />
+          <Property Name="NGAYKETHUC" Type="date" />
+        </EntityType>
+        <Association Name="FK__DIEMDANH__MAGIAN__4B7734FF">
+          <End Role="GIANGVIEN" Type="Self.GIANGVIEN" Multiplicity="0..1" />
+          <End Role="DIEMDANH" Type="Self.DIEMDANH" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GIANGVIEN">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="DIEMDANH">
+              <PropertyRef Name="MAGIANGVIEN" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__DIEMDANH__MAMON__4C6B5938">
+          <End Role="MONHOC" Type="Self.MONHOC" Multiplicity="0..1" />
+          <End Role="DIEMDANH" Type="Self.DIEMDANH" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MONHOC">
+              <PropertyRef Name="IDMONHOC" />
+            </Principal>
+            <Dependent Role="DIEMDANH">
+              <PropertyRef Name="MAMON" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__DIEMDANH__MASINH__4A8310C6">
+          <End Role="SINHVIEN" Type="Self.SINHVIEN" Multiplicity="0..1" />
+          <End Role="DIEMDANH" Type="Self.DIEMDANH" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SINHVIEN">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="DIEMDANH">
+              <PropertyRef Name="MASINHVIEN" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__GIANGVIEN__MADON__3587F3E0">
+          <End Role="DONVI" Type="Self.DONVI" Multiplicity="0..1" />
+          <End Role="GIANGVIEN" Type="Self.GIANGVIEN" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DONVI">
+              <PropertyRef Name="MADONVI" />
+            </Principal>
+            <Dependent Role="GIANGVIEN">
+              <PropertyRef Name="MADONVI" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__SINHVIEN__TENLOP__30C33EC3">
+          <End Role="LOP" Type="Self.LOP" Multiplicity="0..1" />
+          <End Role="SINHVIEN" Type="Self.SINHVIEN" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LOP">
+              <PropertyRef Name="TENLOP" />
+            </Principal>
+            <Dependent Role="SINHVIEN">
+              <PropertyRef Name="TENLOP" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TAIKHOAN__ROLE1__7755B73D">
+          <End Role="ROLE" Type="Self.ROLE" Multiplicity="0..1" />
+          <End Role="TAIKHOAN" Type="Self.TAIKHOAN" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ROLE">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="TAIKHOAN">
+              <PropertyRef Name="ROLE1" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TKB__MAGIANGVIEN__44CA3770">
+          <End Role="GIANGVIEN" Type="Self.GIANGVIEN" Multiplicity="0..1" />
+          <End Role="TKB" Type="Self.TKB" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GIANGVIEN">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="TKB">
+              <PropertyRef Name="MAGIANGVIEN" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TKB__MAMH__43D61337">
+          <End Role="MONHOC" Type="Self.MONHOC" Multiplicity="0..1" />
+          <End Role="TKB" Type="Self.TKB" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MONHOC">
+              <PropertyRef Name="IDMONHOC" />
+            </Principal>
+            <Dependent Role="TKB">
+              <PropertyRef Name="MAMH" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TKB__NHOM__42E1EEFE">
+          <End Role="NHOM" Type="Self.NHOM" Multiplicity="0..1" />
+          <End Role="TKB" Type="Self.TKB" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="NHOM">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="TKB">
+              <PropertyRef Name="NHOM" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TKB__PHONG__46B27FE2">
+          <End Role="PHONG" Type="Self.PHONG" Multiplicity="0..1" />
+          <End Role="TKB" Type="Self.TKB" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PHONG">
+              <PropertyRef Name="MAPHONG" />
+            </Principal>
+            <Dependent Role="TKB">
+              <PropertyRef Name="PHONG" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TKB__TENLOP__45BE5BA9">
+          <End Role="LOP" Type="Self.LOP" Multiplicity="0..1" />
+          <End Role="TKB" Type="Self.TKB" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LOP">
+              <PropertyRef Name="TENLOP" />
+            </Principal>
+            <Dependent Role="TKB">
+              <PropertyRef Name="TENLOP" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="WEBATTENDANCEModelStoreContainer">
+          <EntitySet Name="DIEMDANH" EntityType="Self.DIEMDANH" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DONVI" EntityType="Self.DONVI" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="GIANGVIEN" EntityType="Self.GIANGVIEN" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="LOP" EntityType="Self.LOP" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MONHOC" EntityType="Self.MONHOC" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="NHOM" EntityType="Self.NHOM" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PHONG" EntityType="Self.PHONG" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ROLE" EntityType="Self.ROLE" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SINHVIEN" EntityType="Self.SINHVIEN" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TAIKHOAN" EntityType="Self.TAIKHOAN" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TKB" EntityType="Self.TKB" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__DIEMDANH__MAGIAN__4B7734FF" Association="Self.FK__DIEMDANH__MAGIAN__4B7734FF">
+            <End Role="GIANGVIEN" EntitySet="GIANGVIEN" />
+            <End Role="DIEMDANH" EntitySet="DIEMDANH" />
+          </AssociationSet>
+          <AssociationSet Name="FK__DIEMDANH__MAMON__4C6B5938" Association="Self.FK__DIEMDANH__MAMON__4C6B5938">
+            <End Role="MONHOC" EntitySet="MONHOC" />
+            <End Role="DIEMDANH" EntitySet="DIEMDANH" />
+          </AssociationSet>
+          <AssociationSet Name="FK__DIEMDANH__MASINH__4A8310C6" Association="Self.FK__DIEMDANH__MASINH__4A8310C6">
+            <End Role="SINHVIEN" EntitySet="SINHVIEN" />
+            <End Role="DIEMDANH" EntitySet="DIEMDANH" />
+          </AssociationSet>
+          <AssociationSet Name="FK__GIANGVIEN__MADON__3587F3E0" Association="Self.FK__GIANGVIEN__MADON__3587F3E0">
+            <End Role="DONVI" EntitySet="DONVI" />
+            <End Role="GIANGVIEN" EntitySet="GIANGVIEN" />
+          </AssociationSet>
+          <AssociationSet Name="FK__SINHVIEN__TENLOP__30C33EC3" Association="Self.FK__SINHVIEN__TENLOP__30C33EC3">
+            <End Role="LOP" EntitySet="LOP" />
+            <End Role="SINHVIEN" EntitySet="SINHVIEN" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TAIKHOAN__ROLE1__7755B73D" Association="Self.FK__TAIKHOAN__ROLE1__7755B73D">
+            <End Role="ROLE" EntitySet="ROLE" />
+            <End Role="TAIKHOAN" EntitySet="TAIKHOAN" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TKB__MAGIANGVIEN__44CA3770" Association="Self.FK__TKB__MAGIANGVIEN__44CA3770">
+            <End Role="GIANGVIEN" EntitySet="GIANGVIEN" />
+            <End Role="TKB" EntitySet="TKB" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TKB__MAMH__43D61337" Association="Self.FK__TKB__MAMH__43D61337">
+            <End Role="MONHOC" EntitySet="MONHOC" />
+            <End Role="TKB" EntitySet="TKB" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TKB__NHOM__42E1EEFE" Association="Self.FK__TKB__NHOM__42E1EEFE">
+            <End Role="NHOM" EntitySet="NHOM" />
+            <End Role="TKB" EntitySet="TKB" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TKB__PHONG__46B27FE2" Association="Self.FK__TKB__PHONG__46B27FE2">
+            <End Role="PHONG" EntitySet="PHONG" />
+            <End Role="TKB" EntitySet="TKB" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TKB__TENLOP__45BE5BA9" Association="Self.FK__TKB__TENLOP__45BE5BA9">
+            <End Role="LOP" EntitySet="LOP" />
+            <End Role="TKB" EntitySet="TKB" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="WEBATTENDANCEModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="DIEMDANH">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MASINHVIEN" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="TENSINHVIEN" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="MAGIANGVIEN" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="MAMON" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="NGAYDIENDANH" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="GIANGVIEN" Relationship="Self.FK__DIEMDANH__MAGIAN__4B7734FF" FromRole="DIEMDANH" ToRole="GIANGVIEN" />
+          <NavigationProperty Name="MONHOC" Relationship="Self.FK__DIEMDANH__MAMON__4C6B5938" FromRole="DIEMDANH" ToRole="MONHOC" />
+          <NavigationProperty Name="SINHVIEN" Relationship="Self.FK__DIEMDANH__MASINH__4A8310C6" FromRole="DIEMDANH" ToRole="SINHVIEN" />
+        </EntityType>
+        <EntityType Name="DONVI">
+          <Key>
+            <PropertyRef Name="MADONVI" />
+          </Key>
+          <Property Name="MADONVI" Type="Int32" Nullable="false" />
+          <Property Name="TENDONVI" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="GIANGVIENs" Relationship="Self.FK__GIANGVIEN__MADON__3587F3E0" FromRole="DONVI" ToRole="GIANGVIEN" />
+        </EntityType>
+        <EntityType Name="GIANGVIEN">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="TEN" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="CHUCVU" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="BANGCAP" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="MADONVI" Type="Int32" />
+          <NavigationProperty Name="DIEMDANHs" Relationship="Self.FK__DIEMDANH__MAGIAN__4B7734FF" FromRole="GIANGVIEN" ToRole="DIEMDANH" />
+          <NavigationProperty Name="DONVI" Relationship="Self.FK__GIANGVIEN__MADON__3587F3E0" FromRole="GIANGVIEN" ToRole="DONVI" />
+          <NavigationProperty Name="TKBs" Relationship="Self.FK__TKB__MAGIANGVIEN__44CA3770" FromRole="GIANGVIEN" ToRole="TKB" />
+        </EntityType>
+        <EntityType Name="LOP">
+          <Key>
+            <PropertyRef Name="TENLOP" />
+          </Key>
+          <Property Name="TENLOP" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="SINHVIENs" Relationship="Self.FK__SINHVIEN__TENLOP__30C33EC3" FromRole="LOP" ToRole="SINHVIEN" />
+          <NavigationProperty Name="TKBs" Relationship="Self.FK__TKB__TENLOP__45BE5BA9" FromRole="LOP" ToRole="TKB" />
+        </EntityType>
+        <EntityType Name="MONHOC">
+          <Key>
+            <PropertyRef Name="IDMONHOC" />
+          </Key>
+          <Property Name="IDMONHOC" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="TENMONHOC" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="SOTC" Type="Int32" />
+          <NavigationProperty Name="DIEMDANHs" Relationship="Self.FK__DIEMDANH__MAMON__4C6B5938" FromRole="MONHOC" ToRole="DIEMDANH" />
+          <NavigationProperty Name="TKBs" Relationship="Self.FK__TKB__MAMH__43D61337" FromRole="MONHOC" ToRole="TKB" />
+        </EntityType>
+        <EntityType Name="NHOM">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="HOCKI" Type="Int32" />
+          <Property Name="NAMHOC" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="TKBs" Relationship="Self.FK__TKB__NHOM__42E1EEFE" FromRole="NHOM" ToRole="TKB" />
+        </EntityType>
+        <EntityType Name="PHONG">
+          <Key>
+            <PropertyRef Name="MAPHONG" />
+          </Key>
+          <Property Name="MAPHONG" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="TKBs" Relationship="Self.FK__TKB__PHONG__46B27FE2" FromRole="PHONG" ToRole="TKB" />
+        </EntityType>
+        <EntityType Name="ROLE">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="ROLE1" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="TAIKHOANs" Relationship="WEBATTENDANCEModel.FK__TAIKHOAN__ROLE1__7755B73D" FromRole="ROLE" ToRole="TAIKHOAN" />
+        </EntityType>
+        <EntityType Name="SINHVIEN">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="TEN" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="TENLOP" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="DIEMDANHs" Relationship="Self.FK__DIEMDANH__MASINH__4A8310C6" FromRole="SINHVIEN" ToRole="DIEMDANH" />
+          <NavigationProperty Name="LOP" Relationship="Self.FK__SINHVIEN__TENLOP__30C33EC3" FromRole="SINHVIEN" ToRole="LOP" />
+        </EntityType>
+        <EntityType Name="sysdiagram">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="TKB">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NHOM" Type="Int32" />
+          <Property Name="MAMH" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="MAGIANGVIEN" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="PHONG" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="TENLOP" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="NGAYBATDAU" Type="DateTime" Precision="0" />
+          <Property Name="NGAYKETHUC" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="GIANGVIEN" Relationship="Self.FK__TKB__MAGIANGVIEN__44CA3770" FromRole="TKB" ToRole="GIANGVIEN" />
+          <NavigationProperty Name="LOP" Relationship="Self.FK__TKB__TENLOP__45BE5BA9" FromRole="TKB" ToRole="LOP" />
+          <NavigationProperty Name="MONHOC" Relationship="Self.FK__TKB__MAMH__43D61337" FromRole="TKB" ToRole="MONHOC" />
+          <NavigationProperty Name="NHOM1" Relationship="Self.FK__TKB__NHOM__42E1EEFE" FromRole="TKB" ToRole="NHOM" />
+          <NavigationProperty Name="PHONG1" Relationship="Self.FK__TKB__PHONG__46B27FE2" FromRole="TKB" ToRole="PHONG" />
+        </EntityType>
+        <Association Name="FK__DIEMDANH__MAGIAN__4B7734FF">
+          <End Role="GIANGVIEN" Type="Self.GIANGVIEN" Multiplicity="0..1" />
+          <End Role="DIEMDANH" Type="Self.DIEMDANH" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GIANGVIEN">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="DIEMDANH">
+              <PropertyRef Name="MAGIANGVIEN" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__DIEMDANH__MAMON__4C6B5938">
+          <End Role="MONHOC" Type="Self.MONHOC" Multiplicity="0..1" />
+          <End Role="DIEMDANH" Type="Self.DIEMDANH" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MONHOC">
+              <PropertyRef Name="IDMONHOC" />
+            </Principal>
+            <Dependent Role="DIEMDANH">
+              <PropertyRef Name="MAMON" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__DIEMDANH__MASINH__4A8310C6">
+          <End Role="SINHVIEN" Type="Self.SINHVIEN" Multiplicity="0..1" />
+          <End Role="DIEMDANH" Type="Self.DIEMDANH" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SINHVIEN">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="DIEMDANH">
+              <PropertyRef Name="MASINHVIEN" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__GIANGVIEN__MADON__3587F3E0">
+          <End Role="DONVI" Type="Self.DONVI" Multiplicity="0..1" />
+          <End Role="GIANGVIEN" Type="Self.GIANGVIEN" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DONVI">
+              <PropertyRef Name="MADONVI" />
+            </Principal>
+            <Dependent Role="GIANGVIEN">
+              <PropertyRef Name="MADONVI" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TKB__MAGIANGVIEN__44CA3770">
+          <End Role="GIANGVIEN" Type="Self.GIANGVIEN" Multiplicity="0..1" />
+          <End Role="TKB" Type="Self.TKB" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GIANGVIEN">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="TKB">
+              <PropertyRef Name="MAGIANGVIEN" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__SINHVIEN__TENLOP__30C33EC3">
+          <End Role="LOP" Type="Self.LOP" Multiplicity="0..1" />
+          <End Role="SINHVIEN" Type="Self.SINHVIEN" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LOP">
+              <PropertyRef Name="TENLOP" />
+            </Principal>
+            <Dependent Role="SINHVIEN">
+              <PropertyRef Name="TENLOP" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TKB__TENLOP__45BE5BA9">
+          <End Role="LOP" Type="Self.LOP" Multiplicity="0..1" />
+          <End Role="TKB" Type="Self.TKB" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LOP">
+              <PropertyRef Name="TENLOP" />
+            </Principal>
+            <Dependent Role="TKB">
+              <PropertyRef Name="TENLOP" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TKB__MAMH__43D61337">
+          <End Role="MONHOC" Type="Self.MONHOC" Multiplicity="0..1" />
+          <End Role="TKB" Type="Self.TKB" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MONHOC">
+              <PropertyRef Name="IDMONHOC" />
+            </Principal>
+            <Dependent Role="TKB">
+              <PropertyRef Name="MAMH" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TKB__NHOM__42E1EEFE">
+          <End Role="NHOM" Type="Self.NHOM" Multiplicity="0..1" />
+          <End Role="TKB" Type="Self.TKB" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="NHOM">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="TKB">
+              <PropertyRef Name="NHOM" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TKB__PHONG__46B27FE2">
+          <End Role="PHONG" Type="Self.PHONG" Multiplicity="0..1" />
+          <End Role="TKB" Type="Self.TKB" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PHONG">
+              <PropertyRef Name="MAPHONG" />
+            </Principal>
+            <Dependent Role="TKB">
+              <PropertyRef Name="PHONG" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="WEBATTENDANCEEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="DIEMDANHs" EntityType="Self.DIEMDANH" />
+          <EntitySet Name="DONVIs" EntityType="Self.DONVI" />
+          <EntitySet Name="GIANGVIENs" EntityType="Self.GIANGVIEN" />
+          <EntitySet Name="LOPs" EntityType="Self.LOP" />
+          <EntitySet Name="MONHOCs" EntityType="Self.MONHOC" />
+          <EntitySet Name="NHOMs" EntityType="Self.NHOM" />
+          <EntitySet Name="PHONGs" EntityType="Self.PHONG" />
+          <EntitySet Name="ROLEs" EntityType="Self.ROLE" />
+          <EntitySet Name="SINHVIENs" EntityType="Self.SINHVIEN" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+          <EntitySet Name="TKBs" EntityType="Self.TKB" />
+          <AssociationSet Name="FK__DIEMDANH__MAGIAN__4B7734FF" Association="Self.FK__DIEMDANH__MAGIAN__4B7734FF">
+            <End Role="GIANGVIEN" EntitySet="GIANGVIENs" />
+            <End Role="DIEMDANH" EntitySet="DIEMDANHs" />
+          </AssociationSet>
+          <AssociationSet Name="FK__DIEMDANH__MAMON__4C6B5938" Association="Self.FK__DIEMDANH__MAMON__4C6B5938">
+            <End Role="MONHOC" EntitySet="MONHOCs" />
+            <End Role="DIEMDANH" EntitySet="DIEMDANHs" />
+          </AssociationSet>
+          <AssociationSet Name="FK__DIEMDANH__MASINH__4A8310C6" Association="Self.FK__DIEMDANH__MASINH__4A8310C6">
+            <End Role="SINHVIEN" EntitySet="SINHVIENs" />
+            <End Role="DIEMDANH" EntitySet="DIEMDANHs" />
+          </AssociationSet>
+          <AssociationSet Name="FK__GIANGVIEN__MADON__3587F3E0" Association="Self.FK__GIANGVIEN__MADON__3587F3E0">
+            <End Role="DONVI" EntitySet="DONVIs" />
+            <End Role="GIANGVIEN" EntitySet="GIANGVIENs" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TKB__MAGIANGVIEN__44CA3770" Association="Self.FK__TKB__MAGIANGVIEN__44CA3770">
+            <End Role="GIANGVIEN" EntitySet="GIANGVIENs" />
+            <End Role="TKB" EntitySet="TKBs" />
+          </AssociationSet>
+          <AssociationSet Name="FK__SINHVIEN__TENLOP__30C33EC3" Association="Self.FK__SINHVIEN__TENLOP__30C33EC3">
+            <End Role="LOP" EntitySet="LOPs" />
+            <End Role="SINHVIEN" EntitySet="SINHVIENs" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TKB__TENLOP__45BE5BA9" Association="Self.FK__TKB__TENLOP__45BE5BA9">
+            <End Role="LOP" EntitySet="LOPs" />
+            <End Role="TKB" EntitySet="TKBs" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TKB__MAMH__43D61337" Association="Self.FK__TKB__MAMH__43D61337">
+            <End Role="MONHOC" EntitySet="MONHOCs" />
+            <End Role="TKB" EntitySet="TKBs" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TKB__NHOM__42E1EEFE" Association="Self.FK__TKB__NHOM__42E1EEFE">
+            <End Role="NHOM" EntitySet="NHOMs" />
+            <End Role="TKB" EntitySet="TKBs" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TKB__PHONG__46B27FE2" Association="Self.FK__TKB__PHONG__46B27FE2">
+            <End Role="PHONG" EntitySet="PHONGs" />
+            <End Role="TKB" EntitySet="TKBs" />
+          </AssociationSet>
+          <EntitySet Name="TAIKHOANs" EntityType="WEBATTENDANCEModel.TAIKHOAN" />
+          <AssociationSet Name="FK__TAIKHOAN__ROLE1__7755B73D" Association="WEBATTENDANCEModel.FK__TAIKHOAN__ROLE1__7755B73D">
+            <End Role="ROLE" EntitySet="ROLEs" />
+            <End Role="TAIKHOAN" EntitySet="TAIKHOANs" />
+          </AssociationSet>
+          </EntityContainer>
+        <EntityType Name="TAIKHOAN">
+          <Key>
+            <PropertyRef Name="USERNAME" />
+          </Key>
+          <Property Name="USERNAME" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="PASSWORD" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="Name" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="ROLE1" Type="Int32" />
+          <NavigationProperty Name="ROLE" Relationship="WEBATTENDANCEModel.FK__TAIKHOAN__ROLE1__7755B73D" FromRole="TAIKHOAN" ToRole="ROLE" />
+        </EntityType>
+        <Association Name="FK__TAIKHOAN__ROLE1__7755B73D">
+          <End Type="WEBATTENDANCEModel.ROLE" Role="ROLE" Multiplicity="0..1" />
+          <End Type="WEBATTENDANCEModel.TAIKHOAN" Role="TAIKHOAN" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ROLE">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="TAIKHOAN">
+              <PropertyRef Name="ROLE1" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="WEBATTENDANCEModelStoreContainer" CdmEntityContainer="WEBATTENDANCEEntities">
+          <EntitySetMapping Name="DIEMDANHs">
+            <EntityTypeMapping TypeName="WEBATTENDANCEModel.DIEMDANH">
+              <MappingFragment StoreEntitySet="DIEMDANH">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="MASINHVIEN" ColumnName="MASINHVIEN" />
+                <ScalarProperty Name="TENSINHVIEN" ColumnName="TENSINHVIEN" />
+                <ScalarProperty Name="MAGIANGVIEN" ColumnName="MAGIANGVIEN" />
+                <ScalarProperty Name="MAMON" ColumnName="MAMON" />
+                <ScalarProperty Name="NGAYDIENDANH" ColumnName="NGAYDIENDANH" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DONVIs">
+            <EntityTypeMapping TypeName="WEBATTENDANCEModel.DONVI">
+              <MappingFragment StoreEntitySet="DONVI">
+                <ScalarProperty Name="MADONVI" ColumnName="MADONVI" />
+                <ScalarProperty Name="TENDONVI" ColumnName="TENDONVI" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="GIANGVIENs">
+            <EntityTypeMapping TypeName="WEBATTENDANCEModel.GIANGVIEN">
+              <MappingFragment StoreEntitySet="GIANGVIEN">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="TEN" ColumnName="TEN" />
+                <ScalarProperty Name="CHUCVU" ColumnName="CHUCVU" />
+                <ScalarProperty Name="BANGCAP" ColumnName="BANGCAP" />
+                <ScalarProperty Name="MADONVI" ColumnName="MADONVI" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LOPs">
+            <EntityTypeMapping TypeName="WEBATTENDANCEModel.LOP">
+              <MappingFragment StoreEntitySet="LOP">
+                <ScalarProperty Name="TENLOP" ColumnName="TENLOP" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MONHOCs">
+            <EntityTypeMapping TypeName="WEBATTENDANCEModel.MONHOC">
+              <MappingFragment StoreEntitySet="MONHOC">
+                <ScalarProperty Name="IDMONHOC" ColumnName="IDMONHOC" />
+                <ScalarProperty Name="TENMONHOC" ColumnName="TENMONHOC" />
+                <ScalarProperty Name="SOTC" ColumnName="SOTC" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="NHOMs">
+            <EntityTypeMapping TypeName="WEBATTENDANCEModel.NHOM">
+              <MappingFragment StoreEntitySet="NHOM">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="HOCKI" ColumnName="HOCKI" />
+                <ScalarProperty Name="NAMHOC" ColumnName="NAMHOC" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PHONGs">
+            <EntityTypeMapping TypeName="WEBATTENDANCEModel.PHONG">
+              <MappingFragment StoreEntitySet="PHONG">
+                <ScalarProperty Name="MAPHONG" ColumnName="MAPHONG" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ROLEs">
+            <EntityTypeMapping TypeName="WEBATTENDANCEModel.ROLE">
+              <MappingFragment StoreEntitySet="ROLE">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="ROLE1" ColumnName="ROLE1" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SINHVIENs">
+            <EntityTypeMapping TypeName="WEBATTENDANCEModel.SINHVIEN">
+              <MappingFragment StoreEntitySet="SINHVIEN">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="TEN" ColumnName="TEN" />
+                <ScalarProperty Name="TENLOP" ColumnName="TENLOP" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="WEBATTENDANCEModel.sysdiagram">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TKBs">
+            <EntityTypeMapping TypeName="WEBATTENDANCEModel.TKB">
+              <MappingFragment StoreEntitySet="TKB">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="NHOM" ColumnName="NHOM" />
+                <ScalarProperty Name="MAMH" ColumnName="MAMH" />
+                <ScalarProperty Name="MAGIANGVIEN" ColumnName="MAGIANGVIEN" />
+                <ScalarProperty Name="PHONG" ColumnName="PHONG" />
+                <ScalarProperty Name="TENLOP" ColumnName="TENLOP" />
+                <ScalarProperty Name="NGAYBATDAU" ColumnName="NGAYBATDAU" />
+                <ScalarProperty Name="NGAYKETHUC" ColumnName="NGAYKETHUC" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TAIKHOANs">
+            <EntityTypeMapping TypeName="WEBATTENDANCEModel.TAIKHOAN">
+              <MappingFragment StoreEntitySet="TAIKHOAN">
+                <ScalarProperty Name="ROLE1" ColumnName="ROLE1" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="PASSWORD" ColumnName="PASSWORD" />
+                <ScalarProperty Name="USERNAME" ColumnName="USERNAME" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

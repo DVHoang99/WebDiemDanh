@@ -1,0 +1,46 @@
+﻿@model IEnumerable<WebApplication1.Models.SINHVIEN>
+
+@{
+    ViewBag.Title = "ManageStudent";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>ManageStudent</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            Mã số sinh viên
+        </th>
+        <th>
+            Tên sinh viên
+        </th>
+        <th>
+            Lớp
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+<tr>
+    <th>
+        @Html.DisplayFor(modelItem => item.ID)
+    </th>
+    <td>
+        @Html.DisplayFor(modelItem => item.TEN)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.LOP.TENLOP)
+    </td>
+    <td>
+        @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
+        @Html.ActionLink("Details", "Details", new { id = item.ID }) |
+        @Html.ActionLink("Delete", "Delete", new { id = item.ID })
+    </td>
+</tr>
+}
+
+</table>

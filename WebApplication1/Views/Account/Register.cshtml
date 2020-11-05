@@ -1,0 +1,29 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Register</title>
+</head>
+<body>
+    <div>
+        <form method="post" action="/Account/Register" class="register-form">
+            <input type="text" class="form-control" name="UserName" placeholder="UserName" />
+            <select id="cars" name="Role">
+                <option value="2">Giảng Viên</option>
+                <option value="3">Sinh Viên</option>
+            </select>
+            <input type="password" class="form-control" name="PassWord" placeholder="password" />
+            <input type="password" class="form-control" name="Repassword" placeholder="repassword" />
+            <input type="text" class="form-control" name="Name" placeholder="Address" />
+            <button type="submit">create</button>
+            @ViewBag.a<br />
+        </form>
+    </div>
+</body>
+</html>

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="d2c3c5a2e9104f269ce8af48441f764f" Name="Diagram1">
+        <EntityTypeShape EntityType="WEBATTENDANCEModel.DIEMDANH" Width="1.5" PointX="5.25" PointY="5.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="WEBATTENDANCEModel.DONVI" Width="1.5" PointX="1.5" PointY="12.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="WEBATTENDANCEModel.GIANGVIEN" Width="1.5" PointX="0.75" PointY="9" IsExpanded="true" />
+        <EntityTypeShape EntityType="WEBATTENDANCEModel.LOP" Width="1.5" PointX="0.75" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="WEBATTENDANCEModel.MONHOC" Width="1.5" PointX="0.75" PointY="15.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="WEBATTENDANCEModel.NHOM" Width="1.5" PointX="0.75" PointY="18.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="WEBATTENDANCEModel.PHONG" Width="1.5" PointX="0.75" PointY="20.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="WEBATTENDANCEModel.ROLE" Width="1.5" PointX="6" PointY="1.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="WEBATTENDANCEModel.SINHVIEN" Width="1.5" PointX="3" PointY="5.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="WEBATTENDANCEModel.sysdiagram" Width="1.5" PointX="8.75" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="WEBATTENDANCEModel.TKB" Width="1.5" PointX="3" PointY="0.75" IsExpanded="true" />
+        <AssociationConnector Association="WEBATTENDANCEModel.FK__DIEMDANH__MAGIAN__4B7734FF" ManuallyRouted="false" />
+        <AssociationConnector Association="WEBATTENDANCEModel.FK__DIEMDANH__MAMON__4C6B5938" ManuallyRouted="false" />
+        <AssociationConnector Association="WEBATTENDANCEModel.FK__DIEMDANH__MASINH__4A8310C6" ManuallyRouted="false" />
+        <AssociationConnector Association="WEBATTENDANCEModel.FK__GIANGVIEN__MADON__3587F3E0" ManuallyRouted="false" />
+        <AssociationConnector Association="WEBATTENDANCEModel.FK__TKB__MAGIANGVIEN__44CA3770" ManuallyRouted="false" />
+        <AssociationConnector Association="WEBATTENDANCEModel.FK__SINHVIEN__TENLOP__30C33EC3" ManuallyRouted="false" />
+        <AssociationConnector Association="WEBATTENDANCEModel.FK__TKB__TENLOP__45BE5BA9" ManuallyRouted="false" />
+        <AssociationConnector Association="WEBATTENDANCEModel.FK__TKB__MAMH__43D61337" ManuallyRouted="false" />
+        <AssociationConnector Association="WEBATTENDANCEModel.FK__TKB__NHOM__42E1EEFE" ManuallyRouted="false" />
+        <AssociationConnector Association="WEBATTENDANCEModel.FK__TKB__PHONG__46B27FE2" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="WEBATTENDANCEModel.TAIKHOAN" Width="1.5" PointX="8.25" PointY="4.375" />
+        <AssociationConnector Association="WEBATTENDANCEModel.FK__TAIKHOAN__ROLE1__7755B73D" />
+        </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

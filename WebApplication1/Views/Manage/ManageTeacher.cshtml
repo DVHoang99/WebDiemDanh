@@ -1,0 +1,52 @@
+﻿@model IEnumerable<WebApplication1.Models.GIANGVIEN>
+
+@{
+    ViewBag.Title = "ManageTeacher";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>ManageTeacher</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            Tên 
+        </th>
+        <th>
+            Chức vụ
+        </th>
+        <th>
+            Bằng c
+        </th>
+        <th>
+            Đơn vị trực thuộc
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.TEN)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CHUCVU)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.BANGCAP)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DONVI.TENDONVI)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.ID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.ID })
+        </td>
+    </tr>
+}
+
+</table>
